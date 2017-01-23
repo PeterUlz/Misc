@@ -33,5 +33,19 @@ summary(model)
 new_data<-data.frame(telomer_reads_per_1M=c(15,20,10))
 prediction<-predict(model,newdata=new_data)
 
-#Check for new data
+#Analyze new set of data
+breast_data<-read.csv("read_counts_counting_breast.txt",header=TRUE,sep="\t")
+str(breast_data)
+prediction<-predict(model,newdata=breast_data)
+plot(breast_data$age,prediction)
+cor.test(breast_data$age,prediction)
+
+
+#Check breast cancer dataset
+ggplot(breast_data,aes(age,fill=gender)) +geom_histogram()
+
+#Compare datasets
+ggplot(telomere_data,aes(age)) +geom_histogram(fill="blue") + geom_histogram(data=breast_data,fill="red")
+ggplot(telomere_data,aes(age)) +geom_density(fill="blue",alpha=0.2) + geom_density(data=breast_data,fill="red",alpha=0.2)
+
 
