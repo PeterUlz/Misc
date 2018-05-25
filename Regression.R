@@ -9,9 +9,11 @@ telomere_data<-read.csv("read_counts_counting.txt",header=TRUE,sep="\t")
 str(telomere_data)
 
 #Plot data
+plot(telomere_data$age,telomere_data$telomer_reads_per_1M,pch=16)
 ggplot(telomere_data, aes(x=age,y=telomer_reads_per_1M,color=gender)) + geom_point()
 
 #Plot again but with Loess fit
+plot(telomere_data$age,telomere_data$telomer_reads_per_1M,pch=16)
 ggplot(telomere_data, aes(x=age,y=telomer_reads_per_1M,color=gender)) + geom_point() + geom_smooth()
 
 #Plot again but with Loess fit
